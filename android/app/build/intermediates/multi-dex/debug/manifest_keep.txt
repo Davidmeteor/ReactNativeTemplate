@@ -1,0 +1,13 @@
+-keep class com.myTemplate.MainApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class com.myTemplate.MainActivity { <init>(); }
+-keep class com.facebook.FacebookActivity { <init>(); }
+-keep class com.facebook.react.devsupport.DevSettingsActivity { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

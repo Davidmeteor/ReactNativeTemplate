@@ -1,0 +1,8 @@
+keystore(
+  name = 'production',
+  store = 'myTemplate.keystore',
+  properties = 'debug.keystore.properties',
+  visibility = [
+    'PUBLIC',
+  ],
+)
