@@ -107,6 +107,7 @@ class Introduction extends React.Component {
             <View>
               <Button
                 onPress={() => {
+                  console.log('testests')
                   Actions.LoginMain({ back: true })
                 }}
                 containerStyle={styles.btnContainerStyle}

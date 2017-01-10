@@ -132,7 +132,7 @@ const LoginForm = ({
   } // switch
 
   return (
-    <Form ref={ref => { this.form = ref }}
+    <Form ref={ref => { t.form = ref }}
           type={loginForm}
           options={options}
           value={value}
@@ -148,4 +148,3 @@ LoginForm.propTypes = {
 }
 
 export default LoginForm
-

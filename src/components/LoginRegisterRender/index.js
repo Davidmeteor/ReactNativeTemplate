@@ -116,7 +116,6 @@ class LoginRegisterRender extends React.Component {
      * header props are mostly for support of Hot reloading.
      * See the docs for Header for more info.
      */
-
     return (
       <View style={styles.container}>
         <Header
