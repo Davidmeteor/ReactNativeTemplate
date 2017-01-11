@@ -32,6 +32,7 @@ export function* signUp(payload) {
     yield put(authActions.logoutState())
     Actions.Main()
   } catch (error) {
+    console.log(error)
     SimpleAlert.alert(I18n.t('AuthMessage.error'), I18n.t('AuthMessage.signupError'))
     yield put(authActions.signupFailure(error))
   }
