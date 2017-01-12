@@ -13,6 +13,7 @@ const {
   RESET_PASSWORD_START,
   INIT_AUTH,
   FB_LOGIN_START,
+  RESEND_VERIFICATIONEMAIL_START,
 } = require('../../lib/constants').default
 
 const api = new ApiFactory()
@@ -22,6 +23,8 @@ export function* signUp(payload) {
     yield put(authActions.signupRequest())
     // user is a promise backed from firebase
     const user = yield call([api, api.signup], payload)
+    // Firebase send email verification
+    user.sendEmailVerification()
     // newUser will be written in database
     const newUser = yield new UserModel(user.uid, {
       email: payload.email,
@@ -30,6 +33,7 @@ export function* signUp(payload) {
     yield call([api, api.writeDataBase], newUser.getPath(), newUser.getData())
     yield put(authActions.signupSuccess({ uid: user.uid }))
     yield put(authActions.logoutState())
+    SimpleAlert.alert(I18n.t('AuthMessage.success'), I18n.t('AuthMessage.emailVerificationMessage'))
     Actions.Main()
   } catch (error) {
     console.log(error)
@@ -42,14 +46,22 @@ export function* initAuth() {
   try {
     const user = yield call([api, api.initAuth])
     if (user) {
-      yield put(authActions.loginSuccess({
-        uid: user.uid,
-        username: user.displayName,
-        email: user.email,
-        avatar: user.photoURL,
-      }))
-      yield put(authActions.logoutState())
-      setTimeout(() => Actions.Main(), 4000)
+      console.log(user.providerData[0].providerId)
+      // if user is signed up by using the facebook, I don't nned to verify the email
+      if (user.emailVerified || user.providerData[0].providerId === 'facebook.com') {
+        yield put(authActions.loginSuccess({
+          uid: user.uid,
+          username: user.displayName,
+          email: user.email,
+          avatar: user.photoURL,
+        }))
+        yield put(authActions.logoutState())
+        setTimeout(() => Actions.Main(), 4000)
+      } else {
+        SimpleAlert.alert(I18n.t('AuthMessage.caution'), I18n.t('AuthMessage.emailVeriificationError'))
+        yield put(authActions.loginState())
+        setTimeout(() => Actions.Introduction(), 4000)
+      }
     } else {
       yield put(authActions.loginState())
       setTimeout(() => Actions.Introduction(), 4000)
@@ -78,14 +90,19 @@ export function* login(payload) {
   try {
     yield put(authActions.loginRequest())
     const user = yield call([api, api.login], payload)
-    yield put(authActions.loginSuccess({
-      uid: user.uid,
-      username: user.displayName,
-      email: user.email,
-      avatar: user.photoURL,
-    }))
-    yield put(authActions.logoutState())
-    Actions.Main()
+    if (user.emailVerified) {
+      yield put(authActions.loginSuccess({
+        uid: user.uid,
+        username: user.displayName,
+        email: user.email,
+        avatar: user.photoURL,
+      }))
+      yield put(authActions.logoutState())
+      Actions.Main()
+    } else {
+      SimpleAlert.alert(I18n.t('AuthMessage.error'), I18n.t('AuthMessage.emailVeriificationError'))
+      yield put(authActions.loginFailure())
+    }
   } catch (error) {
     SimpleAlert.alert(I18n.t('AuthMessage.error'), I18n.t('AuthMessage.loginError'))
     yield put(authActions.loginFailure(error))
@@ -102,6 +119,19 @@ export function* resetPassword(email) {
   } catch (error) {
     SimpleAlert.alert(I18n.t('AuthMessage.error'), I18n.t('AuthMessage.resetPasswordError'))
     yield put(authActions.resetPasswordFailure(error))
+  }
+}
+
+export function* resendVerificationEmail(email) {
+  try {
+    yield put(authActions.resendVerificationEmailRequest())
+    yield call([api, api.sendVerificaitonEmail], email)
+    yield put(authActions.loginState())
+    yield put(authActions.resendVerificationEmailSuccess())
+    Actions.pop()
+  } catch (error) {
+    SimpleAlert.alert(I18n.t('AuthMessage.error'), I18n.t('AuthMessage.resetPasswordError'))
+    yield put(authActions.resendVerificationEmailFailure(error))
   }
 }
 
@@ -164,6 +194,13 @@ export function* watchResetPassword() {
   }
 }
 
+export function* watchResendVerificationEmail() {
+  while (true) {
+    const { payload } = yield take(RESEND_VERIFICATIONEMAIL_START)
+    yield fork(resendVerificationEmail, payload)
+  }
+}
+
 export function* watchFacebookLogin() {
   while (true) {
     const { payload } = yield take(FB_LOGIN_START)
@@ -178,4 +215,5 @@ export default [
   fork(watchLogin),
   fork(watchResetPassword),
   fork(watchFacebookLogin),
+  fork(watchResendVerificationEmail),
 ]

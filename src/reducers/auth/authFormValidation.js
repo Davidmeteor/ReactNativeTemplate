@@ -15,6 +15,7 @@ const {
   REGISTER,
   LOGIN,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
 } = require('../../lib/constants').default
 
 /**
@@ -55,6 +56,16 @@ export default function formValidation(state) {
      * ### Reset password has 1 field
      */
     case FORGOT_PASSWORD:
+      if (state.form.fields.email !== '' &&
+        !state.form.fields.emailHasError) {
+        return state.setIn(['form', 'isValid'], true)
+      } else {
+        return state.setIn(['form', 'isValid'], false)
+      }
+    /**
+     * ### Resend verification email has 1 field
+     */
+    case RESEND_VERIFICATIONEMAIL:
       if (state.form.fields.email !== '' &&
         !state.form.fields.emailHasError) {
         return state.setIn(['form', 'isValid'], true)

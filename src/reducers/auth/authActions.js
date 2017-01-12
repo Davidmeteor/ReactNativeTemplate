@@ -9,6 +9,11 @@ const {
   REGISTER,
   LOGIN,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
+  RESEND_VERIFICATIONEMAIL_START,
+  RESEND_VERIFICATIONEMAIL_REQUEST,
+  RESEND_VERIFICATIONEMAIL_SUCCESS,
+  RESEND_VERIFICATIONEMAIL_FAILURE,
 
   LOGOUT_START,
   LOGOUT_REQUEST,
@@ -71,6 +76,12 @@ export function loginState() {
 export function forgotPasswordState() {
   return {
     type: FORGOT_PASSWORD,
+  }
+}
+
+export function resendVerificationEmailState() {
+  return {
+    type: RESEND_VERIFICATIONEMAIL,
   }
 }
 
@@ -225,6 +236,35 @@ export function resetPasswordFailure(error:any) {
 export function resetPassword(email:string) {
   return {
     type: RESET_PASSWORD_START,
+    payload: email,
+  }
+}
+/**
+ * ## Resend verification email actions
+ */
+
+export function resendVerificationEmailRequest() {
+  return {
+    type: RESEND_VERIFICATIONEMAIL_REQUEST,
+  }
+}
+
+export function resendVerificationEmailSuccess() {
+  return {
+    type: RESEND_VERIFICATIONEMAIL_SUCCESS,
+  }
+}
+
+export function resendVerificationEmailFailure(error:any) {
+  return {
+    type: RESEND_VERIFICATIONEMAIL_FAILURE,
+    payload: error,
+  }
+}
+
+export function resendVerificationEmail(email:string) {
+  return {
+    type: RESEND_VERIFICATIONEMAIL_START,
     payload: email,
   }
 }

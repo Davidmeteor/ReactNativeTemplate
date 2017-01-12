@@ -23,6 +23,10 @@ const {
   REGISTER,
   LOGIN,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
+  RESEND_VERIFICATIONEMAIL_REQUEST,
+  RESEND_VERIFICATIONEMAIL_SUCCESS,
+  RESEND_VERIFICATIONEMAIL_FAILURE,
 
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
@@ -66,6 +70,7 @@ export default function authReducer(state = initialState, action) {
     case LOGOUT_REQUEST:
     case LOGIN_REQUEST:
     case RESET_PASSWORD_REQUEST:
+    case RESEND_VERIFICATIONEMAIL_REQUEST:
       return state.setIn(['form', 'isFetching'], true)
       .setIn(['form', 'error'], null)
 
@@ -94,6 +99,7 @@ export default function authReducer(state = initialState, action) {
     case LOGIN:
     case REGISTER:
     case FORGOT_PASSWORD:
+    case RESEND_VERIFICATIONEMAIL:
       return formValidation(
       state.setIn(['form', 'state'], action.type)
         .setIn(['form', 'error'], null)
@@ -124,6 +130,7 @@ export default function authReducer(state = initialState, action) {
     case LOGIN_SUCCESS:
     case LOGOUT_SUCCESS:
     case RESET_PASSWORD_SUCCESS:
+    case RESEND_VERIFICATIONEMAIL_SUCCESS:
       return state.setIn(['form', 'isFetching'], false)
 
     /**
@@ -135,6 +142,7 @@ export default function authReducer(state = initialState, action) {
     case LOGOUT_FAILURE:
     case LOGIN_FAILURE:
     case RESET_PASSWORD_FAILURE:
+    case RESEND_VERIFICATIONEMAIL_FAILURE:
       return state.setIn(['form', 'isFetching'], false)
       .setIn(['form', 'error'], action.payload)
 

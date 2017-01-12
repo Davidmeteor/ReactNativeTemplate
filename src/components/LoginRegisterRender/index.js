@@ -30,6 +30,7 @@ const {
   LOGIN,
   REGISTER,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
 } = require('../../lib/constants').default
 
 function mapDispatchToProps(dispatch) {
@@ -162,6 +163,14 @@ class LoginRegisterRender extends React.Component {
                     }}
                     style={styles.forgotPassword}>
                     {I18n.t('LoginRenderRegister.forgotPassword')}
+                  </Button>
+                  <Button
+                    onPress={() => {
+                      this.props.actions.resetForm()
+                      Actions.LoginRegister({ formType: RESEND_VERIFICATIONEMAIL })
+                    }}
+                    style={styles.forgotPassword}>
+                    {I18n.t('LoginRenderRegister.resendVerificationEmail')}
                   </Button>
                 </View>
               ) : null}

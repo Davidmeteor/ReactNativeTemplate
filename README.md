@@ -16,5 +16,8 @@
 <Form ref={ref => { t.form = ref }}
 ```
 
-
+01/11: Add the following functionality
+- Send the confirmation email if user creates the personal account (not use Facebook log in)
+- Need to activate the account first
+- Diable auto correct in the Email text input
 

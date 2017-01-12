@@ -18,6 +18,7 @@ const {
   REGISTER,
   LOGIN,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
 } = require('../../lib/constants').default
 
 const LoginForm = ({
@@ -56,6 +57,7 @@ const LoginForm = ({
     hasError: form.fields.emailHasError,
     error: form.fields.emailErrorMsg,
     underlineColorAndroid: '#FFFFFF',
+    autoCorrect: false,
   }
 
   const secureTextEntry = !form.fields.showPassword
@@ -122,6 +124,18 @@ const LoginForm = ({
      * The password reset form has only 1 field
      */
     case (FORGOT_PASSWORD):
+      loginForm = t.struct({
+        email: t.String,
+      })
+      options.fields.email = email
+      options.fields.email.autoCapitalize = 'none'
+      options.fields.email.placeholder = I18n.t('LoginForm.email')
+      break
+      /**
+       * ### Resend verifciation email
+       * The password reset form has only 1 field
+       */
+    case (RESEND_VERIFICATIONEMAIL):
       loginForm = t.struct({
         email: t.String,
       })

@@ -62,4 +62,11 @@ export default class Firebase extends apiInterface {
   readDataBaseOnce(path) {
     return firebase.database().ref(path).once('value').then(res => res.val())
   }
+
+  sendVerificaitonEmail(email) {
+    const user = firebase.auth().currentUser
+    console.log(user)
+    user.sendEmailVerification()
+    return
+  }
 }

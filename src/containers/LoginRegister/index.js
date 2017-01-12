@@ -17,6 +17,7 @@ const {
   LOGIN,
   REGISTER,
   FORGOT_PASSWORD,
+  RESEND_VERIFICATIONEMAIL,
 } = require('../../lib/constants').default
 
 const actions = [
@@ -82,6 +83,16 @@ class LoginRegister extends React.Component {
             buttonText={I18n.t('LoginRegister.resetPassword')}
             onButtonPress={() => {
               this.props.actions.resetPassword(this.props.auth.email)
+            }}
+          />
+        )
+      case RESEND_VERIFICATIONEMAIL:
+        return (
+          <LoginRegisterRender
+            formType={RESEND_VERIFICATIONEMAIL}
+            buttonText={I18n.t('LoginRegister.resendVerificationEmail')}
+            onButtonPress={() => {
+              this.props.actions.resendVerificationEmail(this.props.auth.email)
             }}
           />
         )
