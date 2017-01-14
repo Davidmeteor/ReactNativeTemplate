@@ -148,6 +148,7 @@ exports[`LoginForm FORGOT_PASSWORD password fields are not secured if shown 1`] 
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": false,
@@ -471,6 +472,7 @@ exports[`LoginForm FORGOT_PASSWORD should display  errors and  values 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": true,
@@ -794,6 +796,7 @@ exports[`LoginForm FORGOT_PASSWORD should display without errors and without val
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": false,
@@ -1117,6 +1120,7 @@ exports[`LoginForm FORGOT_PASSWORD should not be editable if fetching 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": false,
           "error": undefined,
           "hasError": true,
@@ -1451,6 +1455,7 @@ exports[`LoginForm LOGIN password fields are not secured if shown 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": undefined,
@@ -1785,6 +1790,7 @@ exports[`LoginForm LOGIN should display  errors and  values 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": undefined,
@@ -2119,6 +2125,7 @@ exports[`LoginForm LOGIN should display without errors and without values 1`] = 
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": undefined,
@@ -2453,6 +2460,7 @@ exports[`LoginForm LOGIN should not be editable if fetching 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": false,
           "error": undefined,
           "hasError": undefined,
@@ -2787,6 +2795,7 @@ exports[`LoginForm REGISTER password fields are not secured if shown 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": false,
@@ -3139,6 +3148,7 @@ exports[`LoginForm REGISTER should display  errors and  values 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": true,
@@ -3491,6 +3501,7 @@ exports[`LoginForm REGISTER should display without errors and without values 1`]
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": true,
           "error": undefined,
           "hasError": false,
@@ -3843,6 +3854,7 @@ exports[`LoginForm REGISTER should not be editable if fetching 1`] = `
       "fields": Object {
         "email": Object {
           "autoCapitalize": "none",
+          "autoCorrect": false,
           "editable": false,
           "error": undefined,
           "hasError": true,
