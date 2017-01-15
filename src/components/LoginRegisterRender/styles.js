@@ -22,7 +22,7 @@ export default StyleSheet.create({
   forgotPasswordView: {
     alignSelf: 'stretch',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     marginTop: 10,
   },
 })
