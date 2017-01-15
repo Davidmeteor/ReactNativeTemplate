@@ -25,8 +25,8 @@
 - https://github.com/FuYaoDe/react-native-app-intro/issues/14
 - Root cause is caused by react-native-app-intro module
 - Take the alternative approach:
--- Remove the button in the last page of App intro
--- Add the "Done" button in the last page
--- If user clicks it, App will jump to sign up/log in page
--- iOS/Android are both good
+	- Remove the button in the last page of App intro
+	- Add the "Done" button in the last page
+	- If user clicks it, App will jump to sign up/log in page
+	- iOS/Android are both good
 
