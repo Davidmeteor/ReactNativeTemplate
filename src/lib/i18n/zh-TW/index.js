@@ -63,7 +63,7 @@ export default {
     "loginRegister": "登入 / 註冊",
     "nextBtn": "下一步",
     "skipBtn": "略  過",
-    "doneBtn": "",
+    "doneBtn": "開始",
   },
   "LoginMain": {
     "loginMain": "登入 / 註冊",

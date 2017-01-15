@@ -14,7 +14,6 @@ import I18n from '../../lib/i18n'
 import styles from './styles'
 import AppIntro from '../../components/AppIntro'
 import { Actions } from 'react-native-router-flux'
-import Button from 'react-native-button'
 import * as customActions from '../../reducers/custom/customActions'
 
 const actions = [
@@ -41,6 +40,9 @@ class Introduction extends React.Component {
         nextBtnLabel={I18n.t('Introduction.nextBtn')}
         skipBtnLabel={I18n.t('Introduction.skipBtn')}
         doneBtnLabel={I18n.t('Introduction.doneBtn')}
+        onDoneBtnClick={() => {
+          Actions.LoginMain({ back: true })
+        }}
         defaultIndex={0}
       >
         <View style={[styles.slide, { backgroundColor: '#F88B6D' }]}>
@@ -90,31 +92,6 @@ class Introduction extends React.Component {
           </View>
           <View level={10}>
             <Text style={styles.text}>{I18n.t('Introduction.text4')}</Text>
-          </View>
-          <View style={styles.buttonView}>
-            <View>
-              <Button
-                onPress={() => {
-                  this.props.actions.resetCustom()
-                  Actions.Custom({ fullMode: true })
-                }}
-                containerStyle={[styles.btnContainerStyle, { backgroundColor: '#12A5DB' }]}
-                style={styles.btnStyle}
-              >
-                {I18n.t('Introduction.custom')}
-              </Button>
-            </View>
-            <View>
-              <Button
-                onPress={() => {
-                  Actions.LoginMain({ back: true })
-                }}
-                containerStyle={styles.btnContainerStyle}
-                style={styles.btnStyle}
-              >
-                {I18n.t('Introduction.loginRegister')}
-              </Button>
-            </View>
           </View>
         </View>
       </AppIntro>
