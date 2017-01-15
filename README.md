@@ -21,3 +21,12 @@
 - Need to activate the account first
 - Diable auto correct in the Email text input
 
+01/14: Solve the "button can't click issue' in android
+- https://github.com/FuYaoDe/react-native-app-intro/issues/14
+- Root cause is caused by react-native-app-intro module
+- Take the alternative approach:
+-- Remove the button in the last page of App intro
+-- Add the "Done" button in the last page
+-- If user clicks it, App will jump to sign up/log in page
+-- iOS/Android are both good
+
