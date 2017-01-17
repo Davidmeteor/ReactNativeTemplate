@@ -7,6 +7,12 @@
 * Open the Xcode. Change the name of Scheme to your project
 
 # History
+
+01/16: Move the tab bar to the bottom and add the icon
+- Class must be Capitalize, http://stackoverflow.com/questions/38038751/react-native-expected-a-component-class-got-object-object
+
+- Reference, https://github.com/hiphonezhu/RN-Demos/tree/master/Demo7
+
 01/09: Fix the error when user clicks the Login/SignUp button in the main page. 
 ```javascript
 // in the src/components/LoginForm/index.js

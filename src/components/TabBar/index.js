@@ -5,6 +5,7 @@ import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-vi
 import styles from './styles'
 import MainStyle from '../../styles'
 import { View, Text } from 'react-native'
+import CustomTabBar from './customTabBar'
 
 const TabBar = ({
   tabBarPosition,
@@ -15,6 +16,8 @@ const TabBar = ({
   textStyle,
   onChangeTab,
   initialPage,
+  tabNames,
+  tabIconNames,
   children,
 }) => (
   <ScrollableTabView
@@ -22,12 +25,9 @@ const TabBar = ({
     onChangeTab={onChangeTab}
     initialPage={initialPage}
     renderTabBar={() =>
-      <DefaultTabBar
-        activeTextColor = {activeTextColor}
-        underlineStyle = {underline}
-        tabStyle = {tabStyle}
-        style = {style}
-        textStyle = {textStyle}
+      <CustomTabBar
+        tabNames={tabNames} 
+        tabIconNames={tabIconNames}
       />}
   >
     {children}
@@ -45,7 +45,7 @@ TabBar.propTypes = {
   initialPage: PropTypes.number,
 }
 TabBar.defaultProps = {
-  tabBarPosition: 'top',
+  tabBarPosition: 'bottom',
   activeTextColor: MainStyle.color.main,
   underline: styles.underline,
   tabStyle: styles.tabStyle,

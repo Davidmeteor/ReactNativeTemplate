@@ -47,11 +47,22 @@ function mapDispatchToProps(dispatch) {
 
 class Main extends Component {
 
+constructor(props) {
+		super(props);
+
+		this.state = {
+      // We can configure  the tab here!
+			tabNames: [I18n.t('Nav.custom'), I18n.t('Nav.purchased'), I18n.t('Nav.setting')],
+			tabIconNames: ['ios-paper', 'ios-card', 'ios-contact'],
+		};
+	}
+
   componentWillMount() {
     this.props.actions.initAuth()
   }
 
   render() {
+
     if (this.props.global.currentUser === null) {
       return (
         <View style={styles.container}>
@@ -66,7 +77,7 @@ class Main extends Component {
           headerText={I18n.t('Nav.mainPage')}
           back={false}
         />
-        <TabBar initialPage={this.props.initialPage}>
+        <TabBar initialPage={this.props.initialPage} tabNames={this.state.tabNames} tabIconNames={this.state.tabIconNames}>
           <View
             style={styles.innerView}
             tabLabel={I18n.t('Nav.custom')}
