@@ -8,6 +8,9 @@
 
 # History
 
+02/19: Update to the React-Native 0.4x
+- https://github.com/Davidmeteor/TWFinTech#update-to-the-react-native-04x
+
 01/16: Move the tab bar to the bottom and add the icon
 - Class must be Capitalize, http://stackoverflow.com/questions/38038751/react-native-expected-a-component-class-got-object-object
 
